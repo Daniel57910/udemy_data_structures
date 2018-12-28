@@ -54,6 +54,57 @@ class LinkedList {
       if (this.tail) this.tail.next = null
     }
   }
+
+  findIndex(index) {
+    let count = 0, current = this.head
+    while (count < index) {
+      if (!current) throw new Error("out of bounds of linked list")
+      current = current.next
+      count++
+    }
+    return current.data
+  }
+
+  findValue(value) {
+    let count = 0, current = this.head
+    while(current) {
+      if (current.data === value) return count
+      current = current.next
+      count++
+    }
+    if (!current) throw new Error("item does not exist in the list")
+  }
+
+  insertAfter(value, element) {
+    this.newNode = new Node(element)
+    let current = this.head
+    while(current) {
+      if (current.data === value) {
+        current.next = this.newNode
+        current.next.prev = this.newNode
+        this.newNode.prev = current
+        this.newNode.next = current.next
+        return
+      }
+      current = current.next
+    }
+  }
+
+  insertBefore(value, element) {
+    this.newNode = new Node(element)
+    let current = this.head
+    while(current) {
+      if (current.data === value) {
+        current.prev.next = this.newNode
+        current.prev = this.newNode
+        this.newNode.next = current
+        this.newNode.prev = current.prev
+        return
+      }
+      current = current.next
+    }
+  }
 }
+
 
 module.exports = LinkedList

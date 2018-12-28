@@ -64,7 +64,7 @@ describe(`removing the tail from the list`, () => {
   beforeEach(() => {
     list = new List()
   })
-  test(`removing the tail when the tail does not exist`, () => {
+  test(`removing the tail when  the tail does not exist`, () => {
     list.addToBack(85)
     list.removeTail()
     expect(() => {list.removeTail().toThrowError("There is no tail to remove")})
@@ -81,5 +81,66 @@ describe(`removing the tail from the list`, () => {
     expect(list.tail.data).toEqual(89)
     expect(list.tail.next).toEqual(null)
     expect(list.tail.prev.data).toEqual(56)
+  })
+})
+
+describe(`finding an element in the list by it's numerical index`, () => {
+  beforeEach(() => {
+    list = new List()
+  })
+  test(`searching a list with one element in it`, () => {
+    list.addToFront("rob")
+    expect(list.findIndex(0)).toEqual("rob")
+  })
+  test(`searching a list with several elements in it`, () => {
+    list.addToFront("rob")
+    list.addToFront("luke")
+    list.addToFront("john")
+    list.addToFront("simon")
+    expect(list.findIndex(3)).toEqual("rob")
+    expect(list.findIndex(2)).toEqual("luke")
+    expect(() => {list.findIndex(5)}).toThrowError("out of bounds of linked list")
+  })
+})
+
+describe(`finding an element by its numerical value`, () => {
+  beforeEach(() => {
+    list = new List()
+  })
+  test(`finding an item by it's value when one element in the list`, () => {
+    list.addToFront("rob")
+    expect(list.findValue("rob")).toEqual(0)
+  })
+  test(`adding several items to the list and searching by index`, () => {
+    list.addToFront("sam")
+    list.addToFront("luke")
+    list.addToFront("john")
+    list.addToFront("mike")
+    expect(list.findValue("sam")).toEqual(3)
+    expect(() => {list.findValue(42)}).toThrowError("item does not exist in the list")
+  })
+})
+
+describe(`inserting into the linked list at a specific value`, () => {
+  beforeEach(() => {
+    list = new List()
+  })
+  test(`adding after a specific value in the list`, () => {
+    list.addToFront(45)
+    list.addToFront(41)
+    list.addToBack(92)
+    list.addToFront(75)
+    list.insertAfter(41, 167)
+    expect(list.head.next.next.data).toEqual(167)
+    expect(list.head.next.next.next.data).toEqual(45)
+  })
+  test(`adding before a specific value in the list`, () => {
+    list.addToFront(101)
+    list.addToFront(2532)
+    list.addToFront(442)
+    list.addToFront(42)
+    list.insertBefore(442, 91)
+    expect(list.head.next.data).toEqual(91)
+    expect(list.head.next.next.data).toEqual(442)
   })
 })
