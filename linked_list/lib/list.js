@@ -80,9 +80,9 @@ class LinkedList {
     let current = this.head
     while(current) {
       if (current.data === value) {
-        current.next.prev = this.newNode
         this.newNode.prev = current
         this.newNode.next = current.next
+        current.next.prev = this.newNode
         current.next = this.newNode
         return
       }
@@ -95,14 +95,26 @@ class LinkedList {
     let current = this.head
     while(current) {
       if (current.data === value) {
-        current.prev.next = this.newNode
         this.newNode.next = current
         this.newNode.prev = current.prev
+        current.prev.next = this.newNode
         current.prev = this.newNode
-
         return
       }
       current = current.next
+    }
+  }
+
+  removeItem(value) {
+    let current = this.head
+    while(current) {
+      if (current.data === value) {
+        current.prev.next = current.next
+        current.next.prev = current.prev
+        current.data = current.next.data
+        return
+      }
+      current = current.next 
     }
   }
 }

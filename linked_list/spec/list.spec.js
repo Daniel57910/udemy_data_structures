@@ -156,6 +156,18 @@ describe(`inserting into the linked list at a specific value`, () => {
     expect(list.head.next.next.next.data).toEqual(93)
     expect(list.head.next.next.next.next.data).toEqual(1021)
     expect(list.head.next.next.next.next.next.next.data).toEqual(list.tail.data)
+  })
+})
 
+describe(`Removing items from the linked list`, () => {
+  test('removing an item by value', () => {
+    list.addToFront(36)
+    list.addToFront(831)
+    list.addToFront(381)
+    list.addToFront(72)
+    list.removeItem(381)
+    expect(list.head.next.data).toEqual(831)
+    list.removeItem(831)
+    expect(list.head.next.data).toEqual(36)
   })
 })
