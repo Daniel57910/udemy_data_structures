@@ -1,4 +1,4 @@
-const Node = require('./node')
+const Node = require('../lib/node')
 
 describe(`node in a list`, () => {
  test(`basic instantiation of the node`, () => {
