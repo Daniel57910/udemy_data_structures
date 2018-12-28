@@ -80,10 +80,10 @@ class LinkedList {
     let current = this.head
     while(current) {
       if (current.data === value) {
-        current.next = this.newNode
         current.next.prev = this.newNode
         this.newNode.prev = current
         this.newNode.next = current.next
+        current.next = this.newNode
         return
       }
       current = current.next
@@ -96,9 +96,10 @@ class LinkedList {
     while(current) {
       if (current.data === value) {
         current.prev.next = this.newNode
-        current.prev = this.newNode
         this.newNode.next = current
         this.newNode.prev = current.prev
+        current.prev = this.newNode
+
         return
       }
       current = current.next
