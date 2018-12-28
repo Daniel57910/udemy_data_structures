@@ -59,3 +59,27 @@ describe(`removing the head and tail of the list`, () => {
     expect(() => { list.removeHead().toThrowError("There is no head to remove")})
   })
 })
+
+describe(`removing the tail from the list`, () => {
+  beforeEach(() => {
+    list = new List()
+  })
+  test(`removing the tail when the tail does not exist`, () => {
+    list.addToBack(85)
+    list.removeTail()
+    expect(() => {list.removeTail().toThrowError("There is no tail to remove")})
+  })
+  test(`removing the tail from the list`, () => {
+    list.addToFront(56)
+    list.addToFront(89)
+    list.addToFront(221)
+    list.addToFront(31)
+    list.addToBack(89)
+    list.addToBack(61)
+    list.removeTail()
+
+    expect(list.tail.data).toEqual(89)
+    expect(list.tail.next).toEqual(null)
+    expect(list.tail.prev.data).toEqual(56)
+  })
+})

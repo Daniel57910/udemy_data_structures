@@ -44,6 +44,16 @@ class LinkedList {
       if (this.head) this.head.prev = null
     }
   }
+
+  removeTail() {
+    if (!this.tail) {
+      throw new Error("There is no tail to remove")
+    }
+    else {
+      this.tail = this.tail.prev
+      if (this.tail) this.tail.next = null
+    }
+  }
 }
 
 module.exports = LinkedList
