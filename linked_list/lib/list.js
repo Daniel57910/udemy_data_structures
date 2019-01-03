@@ -106,6 +106,17 @@ class LinkedList {
   }
 
   removeItem(value) {
+    
+    if (this.head.data === value) {
+      this.removeHead()
+      return
+    } 
+
+    else if (this.tail.data === value) {
+      this.removeTail()
+      return
+    }
+    
     let current = this.head
     while(current) {
       if (current.data === value) {
