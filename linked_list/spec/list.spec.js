@@ -171,3 +171,21 @@ describe(`Removing items from the linked list`, () => {
     expect(list.head.next.data).toEqual(36)
   })
 })
+
+describe('Returning all indexes in a list that contain the correct value', () => {
+  beforeEach(() => {
+    list = new List()
+  })
+  test('returning a simple scenario of one index', () => {
+    list.addToFront(37)
+    expect(list.indexOf(37)).toEqual([0])
+  })
+  test('a more complex scenario of multiple indexes', () => {
+    list.addToFront(34)
+    list.addToFront(31)
+    list.addToFront(56)
+    list.addToFront(31)
+    list.addToFront(31)
+    expect(list.indexOf(31)).toEqual([0, 1, 3])
+  })
+})

@@ -117,6 +117,21 @@ class LinkedList {
       current = current.next 
     }
   }
+
+  indexOf(value) {
+    let current = this.head, indexes = [], count = 0
+
+    while(current) {
+      if (current.data === value) {
+        indexes.push(count)
+      }
+      count++
+      current = current.next
+    }
+
+    return indexes
+
+  }
 }
 
 
