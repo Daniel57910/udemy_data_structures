@@ -11,6 +11,7 @@ class BinaryTree {
 				return
 			}
 			else {
+				/*assigns ownership of the code to the constructor, so recursively calls insert on the left node of the tree*/
 				this.left.insert(data)
 			}
 		}
