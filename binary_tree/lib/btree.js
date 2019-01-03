@@ -11,8 +11,7 @@ class BinaryTree {
 				return
 			}
 			else {
-				this.value = this.left.value
-				this.insert(value)
+				this.left.insert(data)
 			}
 		}
 		else {
@@ -21,8 +20,7 @@ class BinaryTree {
 				return
 			}
 			else {
-				this.right = this.right.value
-				this.insert(value)
+				this.right.insert(data)
 			}
 		}
 	}

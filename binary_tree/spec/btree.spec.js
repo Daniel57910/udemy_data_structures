@@ -11,8 +11,8 @@ describe('Basic Binary Search Tree', () => {
 	})
 	test('adding one item to the left', () => {
 		binaryTree.insert(30)
+		binaryTree.insert(18)
 		expect(binaryTree.left.value).toEqual(30)
-		expect(binaryTree.left.left).toEqual(null)
-		expect(binaryTree.left.right).toEqual(null)
+		expect(binaryTree.left.left.value).toEqual(18)
 	})
 })
