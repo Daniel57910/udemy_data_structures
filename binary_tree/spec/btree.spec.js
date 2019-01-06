@@ -46,6 +46,8 @@ describe(`Depth First Search`, () => {
 	})
 	test(`basic depth first search for the smallest value`, () => {
 		expect(binaryTree.depthFirst(9, binaryTree)).toEqual(true)
+		expect(binaryTree.depthFirst(32, binaryTree)).toEqual(true)
+		expect(binaryTree.depthFirst(18, binaryTree)).toEqual(true)
 	})
 	test(`basic depth first search for the largest value`, () => {
 		expect(binaryTree.depthFirst(96, binaryTree)).toEqual(true)
@@ -57,8 +59,30 @@ describe(`Depth First Search`, () => {
 		expect(binaryTree.depthFirst(53, binaryTree)).toEqual(true)
 		expect(binaryTree.depthFirst(46, binaryTree)).toEqual(true)
 		expect(binaryTree.depthFirst(11, binaryTree)).toEqual(true)
-		expect(binaryTree.depthFirst(27, binaryTree)).toEqual(true)
+ 		expect(binaryTree.depthFirst(11, binaryTree)).toEqual(true)
+		expect(binaryTree.depthFirst(81, binaryTree)).toEqual(true)
+		expect(binaryTree.depthFirst(67, binaryTree)).toEqual(true)
 		expect(binaryTree.depthFirst(1201, binaryTree)).toEqual(false)
 		expect(binaryTree.depthFirst(-32, binaryTree)).toEqual(false)
+	})
+})
+
+describe(`random insertions into a binary tree`, () => {
+	beforeEach(() => {
+		arr = []
+		for (let i = 0; i < 10000; i++) {
+			arr.push(Math.floor(Math.random() * 10000))
+		}
+		binaryTree = new BinaryTree(5000)
+		for (i of arr) {
+			binaryTree.insert(i, binaryTree)
+		}
+	})
+
+	test(`random insertions`, () => {
+		for (i of arr) {
+			expect(binaryTree.depthFirst(i, binaryTree)).toEqual(true)
+		}
+		expect(binaryTree.depthFirst(-10, binaryTree)).toEqual(false)
 	})
 })
