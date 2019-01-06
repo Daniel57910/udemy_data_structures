@@ -14,10 +14,10 @@ class BinaryTree {
 	}
 
 	depthFirst(searchItem, root) {
-
-		if (!root) return !root
+		if (!root) return false
 		if (root.value === searchItem) return true
-		return this.depthFirst(searchItem, root.left)
+		if (searchItem <= root.value) return this.depthFirst(searchItem, root.left)
+		return this.depthFirst(searchItem, root.right)
 	}
 }
 			

@@ -1,4 +1,4 @@
-const BinaryTree = require('../lib/btree_2')
+const BinaryTree = require('../lib/btree')
 
 describe('Basic Binary Search Tree', () => {
 	beforeEach(() => {
@@ -31,15 +31,34 @@ describe('Basic Binary Search Tree', () => {
 describe(`Depth First Search`, () => {
 	beforeEach(() => {
 		binaryTree = new BinaryTree(50)
-	})
-	test(`basic depth first search for the smallest value`, () => {
-		let result = binaryTree.depthFirst(50, binaryTree)
-		expect(result).toBe(true)
-
 		binaryTree.insert(32, binaryTree)
 		binaryTree.insert(18, binaryTree)
 		binaryTree.insert(9, binaryTree)
+		binaryTree.insert(67, binaryTree)
+		binaryTree.insert(81, binaryTree)
+		binaryTree.insert(96, binaryTree)
+		binaryTree.insert(95, binaryTree)
+		binaryTree.insert(27, binaryTree)
+		binaryTree.insert(11, binaryTree)
+		binaryTree.insert(46, binaryTree)
+		binaryTree.insert(53, binaryTree)
+		binaryTree.insert(72, binaryTree)
+	})
+	test(`basic depth first search for the smallest value`, () => {
 		expect(binaryTree.depthFirst(9, binaryTree)).toEqual(true)
-
+	})
+	test(`basic depth first search for the largest value`, () => {
+		expect(binaryTree.depthFirst(96, binaryTree)).toEqual(true)
+		expect(binaryTree.depthFirst(95, binaryTree)).toEqual(true)
+		expect(binaryTree.depthFirst(101)).toEqual(false)
+	})
+	test(`searching within a tree with several nodes and children`, () => {
+		expect(binaryTree.depthFirst(72, binaryTree)).toEqual(true)
+		expect(binaryTree.depthFirst(53, binaryTree)).toEqual(true)
+		expect(binaryTree.depthFirst(46, binaryTree)).toEqual(true)
+		expect(binaryTree.depthFirst(11, binaryTree)).toEqual(true)
+		expect(binaryTree.depthFirst(27, binaryTree)).toEqual(true)
+		expect(binaryTree.depthFirst(1201, binaryTree)).toEqual(false)
+		expect(binaryTree.depthFirst(-32, binaryTree)).toEqual(false)
 	})
 })
