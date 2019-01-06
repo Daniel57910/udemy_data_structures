@@ -12,6 +12,13 @@ class BinaryTree {
 			!root.right ? root.right = new BinaryTree(data) : this.insert(data, root.right)
 		}
 	}
+
+	depthFirst(searchItem, root) {
+
+		if (!root) return !root
+		if (root.value === searchItem) return true
+		return this.depthFirst(searchItem, root.left)
+	}
 }
 			
 	

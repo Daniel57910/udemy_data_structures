@@ -27,3 +27,19 @@ describe('Basic Binary Search Tree', () => {
 		expect(binaryTree.left.right.value).toEqual(27)
 	})
 })
+
+describe(`Depth First Search`, () => {
+	beforeEach(() => {
+		binaryTree = new BinaryTree(50)
+	})
+	test(`basic depth first search for the smallest value`, () => {
+		let result = binaryTree.depthFirst(50, binaryTree)
+		expect(result).toBe(true)
+
+		binaryTree.insert(32, binaryTree)
+		binaryTree.insert(18, binaryTree)
+		binaryTree.insert(9, binaryTree)
+		expect(binaryTree.depthFirst(9, binaryTree)).toEqual(true)
+
+	})
+})
