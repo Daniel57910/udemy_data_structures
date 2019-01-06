@@ -1,7 +1,6 @@
 class BinaryTree {
 	constructor(value) {
-		this.value = value,
-		this.right = this.left = null
+		this.value = value, this.right = this.left = null
 	}
 
 	insert(data, root) {
@@ -13,12 +12,17 @@ class BinaryTree {
 		}
 	}
 
-	depthFirst(searchItem, root) {
-		if (!root) return false
-		if (root.value === searchItem) return true
-		if (searchItem <= root.value) return this.depthFirst(searchItem, root.left)
-		return this.depthFirst(searchItem, root.right)
+	depthFirst(searchItem) {
+		return depthFirst(searchItem, root)
 	}
+}
+
+
+function depthFirst(searchItem, node) {
+	if (!node) return false
+	if (searchItem === node.value) return true
+	depthFirst(searchItem, node.right)
+	depthFirst(searchItem, node.left)
 }
 			
 	

@@ -70,15 +70,14 @@ describe(`Depth First Search`, () => {
 describe(`random insertions into a binary tree`, () => {
 	beforeEach(() => {
 		arr = []
-		for (let i = 0; i < 10000; i++) {
-			arr.push(Math.floor(Math.random() * 10000))
+		for (let i = 0; i < 100000; i++) {
+			arr.push(Math.floor(Math.random() * 100000))
 		}
-		binaryTree = new BinaryTree(5000)
+		binaryTree = new BinaryTree(50000)
 		for (i of arr) {
 			binaryTree.insert(i, binaryTree)
 		}
 	})
-
 	test(`random insertions`, () => {
 		for (i of arr) {
 			expect(binaryTree.depthFirst(i, binaryTree)).toEqual(true)
