@@ -1,6 +1,6 @@
 class BinaryTree {
 	constructor(value) {
-		this.value = value
+		this.value = value,
 		this.right = this.left = null
 	}
 

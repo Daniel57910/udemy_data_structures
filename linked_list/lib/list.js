@@ -106,18 +106,17 @@ class LinkedList {
   }
 
   removeItem(value) {
-    
+    let current = this.head
+
     if (this.head.data === value) {
       this.removeHead()
       return
-    } 
-
+    }
     else if (this.tail.data === value) {
       this.removeTail()
       return
     }
     
-    let current = this.head
     while(current) {
       if (current.data === value) {
         current.prev.next = current.next
@@ -132,7 +131,7 @@ class LinkedList {
   indexOf(value) {
     let current = this.head, indexes = [], count = 0
 
-    while(current) {
+    while (current) {
       if (current.data === value) {
         indexes.push(count)
       }
@@ -141,9 +140,8 @@ class LinkedList {
     }
 
     return indexes
-
   }
-}
 
+}
 
 module.exports = LinkedList
