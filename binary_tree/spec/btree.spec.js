@@ -74,3 +74,20 @@ describe(`random insertions into a binary tree`, () => {
 		expect(binaryTree.includes(-10)).toEqual(false)
 	})
 })
+
+describe(`basic value, left, right depth first traversal`, () => {
+	beforeEach(() => {
+		binaryTree = new BinaryTree(5)
+		binaryTree.insert(2)
+		binaryTree.insert(3)
+		binaryTree.insert(1)
+		binaryTree.insert(4)
+		binaryTree.insert(7)
+		binaryTree.insert(6)
+	})
+	test(`traversal by popping the elements into the array`, () => {
+		let arr = []
+		binaryTree.depthFirst(arr)
+		expect(arr).toEqual([5, 2, 1, 3, 4, 7, 6])
+	})
+})

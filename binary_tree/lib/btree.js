@@ -19,6 +19,12 @@ class BinaryTree {
 		if (data > this.value && this.right) return this.right.includes(data)
 		return false
 	}
+
+	depthFirst(arr) {
+		arr.push(this.value)
+		if (this.left) this.left.depthFirst(arr)
+		if (this.right) this.right.depthFirst(arr)
+	}
 }
 
 
