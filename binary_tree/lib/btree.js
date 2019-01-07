@@ -4,21 +4,30 @@ class BinaryTree {
 		this.right = this.left = null
 	}
 
-	insert(data, root) {
-		if (data <= root.value) {
-			!root.left ? root.left = new BinaryTree(data) : this.insert(data, root.left)
+	insert(data) {
+		if (data <= this.value) {
+			!this.left ? this.left = new BinaryTree(data) : this.left.insert(data)
 		}
 		else {
-			!root.right ? root.right = new BinaryTree(data) : this.insert(data, root.right)
+			!this.right ? this.right = new BinaryTree(data) : this.right.insert(data)
 		}
 	}
 
-	depthFirst(searchItem, root) {
-		if (!root) return false
-		if (root.value === searchItem) return true
-		if (searchItem <= root.value) return this.depthFirst(searchItem, root.left)
-		return this.depthFirst(searchItem, root.right)
+	includes(data) {
+		if (data === this.value) return true
+		if (data < this.value && this.left) return this.left.includes(data)
+		if (data > this.value && this.right) return this.right.includes(data)
+		return false
 	}
+}
+
+
+function depthFirst(searchItem, node) {
+	if (!node) return false
+	if (searchItem === node.value) return true
+	depthFirst(searchItem, node.right)
+	depthFirst(searchItem, node.left)
+
 }
 			
 	

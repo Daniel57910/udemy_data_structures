@@ -10,17 +10,17 @@ describe('Basic Binary Search Tree', () => {
 		expect(binaryTree.right).toEqual(null)
 	})
 	test('adding two items to the left', () => {
-		binaryTree.insert(30, binaryTree)
-		binaryTree.insert(18, binaryTree)
+		binaryTree.insert(30)
+		binaryTree.insert(18)
 		expect(binaryTree.left.value).toEqual(30)
 		expect(binaryTree.left.left.value).toEqual(18)
 	})
 	test('adding items to the left and right', () => {
-		binaryTree.insert(18, binaryTree)
-		binaryTree.insert(27, binaryTree)
-		binaryTree.insert(90, binaryTree)
-		binaryTree.insert(81, binaryTree)
-		binaryTree.insert(67, binaryTree)
+		binaryTree.insert(18)
+		binaryTree.insert(27)
+		binaryTree.insert(90)
+		binaryTree.insert(81)
+		binaryTree.insert(67)
 		expect(binaryTree.right.value).toEqual(90)
 		expect(binaryTree.right.left.value).toEqual(81)
 		expect(binaryTree.right.left.left.value).toEqual(67)
@@ -31,57 +31,46 @@ describe('Basic Binary Search Tree', () => {
 describe(`Depth First Search`, () => {
 	beforeEach(() => {
 		binaryTree = new BinaryTree(50)
-		binaryTree.insert(32, binaryTree)
-		binaryTree.insert(18, binaryTree)
-		binaryTree.insert(9, binaryTree)
-		binaryTree.insert(67, binaryTree)
-		binaryTree.insert(81, binaryTree)
-		binaryTree.insert(96, binaryTree)
-		binaryTree.insert(95, binaryTree)
-		binaryTree.insert(27, binaryTree)
-		binaryTree.insert(11, binaryTree)
-		binaryTree.insert(46, binaryTree)
-		binaryTree.insert(53, binaryTree)
-		binaryTree.insert(72, binaryTree)
+		binaryTree.insert(32)
+		binaryTree.insert(18)
+		binaryTree.insert(9)
+		binaryTree.insert(67)
+		binaryTree.insert(81)
+		binaryTree.insert(96)
+		binaryTree.insert(95)
+		binaryTree.insert(27)
+		binaryTree.insert(11)
+		binaryTree.insert(46)
+		binaryTree.insert(53)
+		binaryTree.insert(72)
 	})
 	test(`basic depth first search for the smallest value`, () => {
-		expect(binaryTree.depthFirst(9, binaryTree)).toEqual(true)
-		expect(binaryTree.depthFirst(32, binaryTree)).toEqual(true)
-		expect(binaryTree.depthFirst(18, binaryTree)).toEqual(true)
+		expect(binaryTree.includes(9)).toEqual(true)
+		expect(binaryTree.includes(32)).toEqual(true)
+		expect(binaryTree.includes(18)).toEqual(true)
 	})
 	test(`basic depth first search for the largest value`, () => {
-		expect(binaryTree.depthFirst(96, binaryTree)).toEqual(true)
-		expect(binaryTree.depthFirst(95, binaryTree)).toEqual(true)
-		expect(binaryTree.depthFirst(101)).toEqual(false)
-	})
-	test(`searching within a tree with several nodes and children`, () => {
-		expect(binaryTree.depthFirst(72, binaryTree)).toEqual(true)
-		expect(binaryTree.depthFirst(53, binaryTree)).toEqual(true)
-		expect(binaryTree.depthFirst(46, binaryTree)).toEqual(true)
-		expect(binaryTree.depthFirst(11, binaryTree)).toEqual(true)
- 		expect(binaryTree.depthFirst(11, binaryTree)).toEqual(true)
-		expect(binaryTree.depthFirst(81, binaryTree)).toEqual(true)
-		expect(binaryTree.depthFirst(67, binaryTree)).toEqual(true)
-		expect(binaryTree.depthFirst(1201, binaryTree)).toEqual(false)
-		expect(binaryTree.depthFirst(-32, binaryTree)).toEqual(false)
+		expect(binaryTree.includes(96)).toEqual(true)
+		expect(binaryTree.includes(95)).toEqual(true)
+		expect(binaryTree.includes(101)).toEqual(false)
 	})
 })
 
 describe(`random insertions into a binary tree`, () => {
 	beforeEach(() => {
 		arr = []
-		for (let i = 0; i < 100000; i++) {
-			arr.push(Math.floor(Math.random() * 100000))
+		for (let i = 0; i < 10000; i++) {
+			arr.push(Math.floor(Math.random() * 10000))
 		}
-		binaryTree = new BinaryTree(50000)
+		binaryTree = new BinaryTree(5000)
 		for (i of arr) {
-			binaryTree.insert(i, binaryTree)
+			binaryTree.insert(i)
 		}
 	})
 	test(`random insertions`, () => {
 		for (i of arr) {
-			expect(binaryTree.depthFirst(i, binaryTree)).toEqual(true)
+			expect(binaryTree.includes(i)).toEqual(true)
 		}
-		expect(binaryTree.depthFirst(-10, binaryTree)).toEqual(false)
+		expect(binaryTree.includes(-10)).toEqual(false)
 	})
 })
