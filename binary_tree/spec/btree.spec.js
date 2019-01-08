@@ -105,16 +105,24 @@ describe(`depth first in order`, () => {
 	})
 	test(`more complex assertion of random elements`, () => {
 		let binaryTree = new BinaryTree(10), dataArray = [], testArray = []
-
 		for (let i = 0; i < 20; i++) {
 			dataArray.push(Math.floor(Math.random() * 20))
 		}
-		
 		dataArray.map(data => binaryTree.insert(data))
 		dataArray.push(10)
 		binaryTree.depthFirstInOrder(testArray)
 		expect(testArray).toEqual(dataArray.sort((a, b) => a - b))
+	})
 
+	test(`large assertion of n length array`, () => {
+		let binaryTree = new BinaryTree(50000), dataArray = [], testArray = []
+		for (let i = 0; i < 100000; i++) {
+			dataArray.push(Math.floor(Math.random() * 100000))
+		}
+		dataArray.map(data => binaryTree.insert(data))
+		dataArray.push(50000)
+		binaryTree.depthFirstInOrder(testArray)
+		expect(testArray).toEqual(dataArray.sort((a, b) => a - b))
 	})
 
 })
