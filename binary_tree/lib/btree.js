@@ -25,18 +25,17 @@ class BinaryTree {
 		if (this.left) this.left.depthFirst(arr)
 		if (this.right) this.right.depthFirst(arr)
 	}
-}
 
-
-function depthFirst(searchItem, node) {
-	if (!node) return false
-	if (searchItem === node.value) return true
-	depthFirst(searchItem, node.right)
-	depthFirst(searchItem, node.left)
+	depthFirstInOrder(arr) {
+		if (this.left) this.left.depthFirstInOrder(arr)
+		arr.push(this.value)
+		if (this.right) this.right.depthFirstInOrder(arr)
+	}
 
 }
-			
-	
+
+
+
 
 
 

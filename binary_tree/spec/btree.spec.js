@@ -60,7 +60,7 @@ describe(`random insertions into a binary tree`, () => {
 	beforeEach(() => {
 		arr = []
 		for (let i = 0; i < 10000; i++) {
-			arr.push(Math.floor(Math.random() * 10000))
+			arr.push(Math.floor(Math.random() * 100000))
 		}
 		binaryTree = new BinaryTree(5000)
 		for (i of arr) {
@@ -90,4 +90,31 @@ describe(`basic value, left, right depth first traversal`, () => {
 		binaryTree.depthFirst(arr)
 		expect(arr).toEqual([5, 2, 1, 3, 4, 7, 6])
 	})
+})
+
+describe(`depth first in order`, () => {
+	test(`basic assertion of leftward traversal`, () => {
+		let testElements = [12, 6, 3, 2, 1]
+		let binaryTree = new BinaryTree(10)
+		let dataArray = []
+		testElements.map(element => binaryTree.insert(element))
+		testElements.push(10)
+		testElements.sort((a, b) => a - b)
+		binaryTree.depthFirstInOrder(dataArray)
+		expect(dataArray).toEqual(testElements)
+	})
+	test(`more complex assertion of random elements`, () => {
+		let binaryTree = new BinaryTree(10), dataArray = [], testArray = []
+
+		for (let i = 0; i < 20; i++) {
+			dataArray.push(Math.floor(Math.random() * 20))
+		}
+		
+		dataArray.map(data => binaryTree.insert(data))
+		dataArray.push(10)
+		binaryTree.depthFirstInOrder(testArray)
+		expect(testArray).toEqual(dataArray.sort((a, b) => a - b))
+
+	})
+
 })
