@@ -94,9 +94,7 @@ describe(`basic value, left, right depth first traversal`, () => {
 
 describe(`depth first in order`, () => {
 	test(`basic assertion of leftward traversal`, () => {
-		let testElements = [12, 6, 3, 2, 1]
-		let binaryTree = new BinaryTree(10)
-		let dataArray = []
+		let testElements = [12, 6, 3, 2, 1], binaryTree = new BinaryTree(10), dataArray = []
 		testElements.map(element => binaryTree.insert(element))
 		testElements.push(10)
 		testElements.sort((a, b) => a - b)
@@ -105,24 +103,33 @@ describe(`depth first in order`, () => {
 	})
 	test(`more complex assertion of random elements`, () => {
 		let binaryTree = new BinaryTree(10), dataArray = [], testArray = []
-		for (let i = 0; i < 20; i++) {
-			dataArray.push(Math.floor(Math.random() * 20))
-		}
-		dataArray.map(data => binaryTree.insert(data))
-		dataArray.push(10)
+		addDataToTree(binaryTree, dataArray, 20)
 		binaryTree.depthFirstInOrder(testArray)
 		expect(testArray).toEqual(dataArray.sort((a, b) => a - b))
 	})
-
 	test(`large assertion of n length array`, () => {
 		let binaryTree = new BinaryTree(50000), dataArray = [], testArray = []
-		for (let i = 0; i < 100000; i++) {
-			dataArray.push(Math.floor(Math.random() * 100000))
-		}
-		dataArray.map(data => binaryTree.insert(data))
-		dataArray.push(50000)
+		addDataToTree(binaryTree, dataArray, 100000)
 		binaryTree.depthFirstInOrder(testArray)
 		expect(testArray).toEqual(dataArray.sort((a, b) => a - b))
 	})
-
 })
+
+describe(`breadth first search`, () => {
+	test(`basic breadth first search test`, () => {
+		let binaryTree = new BinaryTree(10), dataArray = [], queue = []
+		binaryTree.insert(6)
+		binaryTree.insert(12)
+		binaryTree.insert(3)
+		binaryTree.breadthFirst(dataArray, queue)
+		expect(dataArray).toEqual([10, 6, 12, 3])
+	})
+})
+
+function addDataToTree(binaryTree, dataArray, n) {
+	for (let i = 0; i < n; i++) {
+		dataArray.push(Math.floor(Math.random() * n))
+	}
+	dataArray.map(data => binaryTree.insert(data))
+	dataArray.push(n / 2)
+}

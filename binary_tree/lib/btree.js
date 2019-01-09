@@ -32,6 +32,15 @@ class BinaryTree {
 		if (this.right) this.right.depthFirstInOrder(arr)
 	}
 
+	breadthFirst(arr, queue) {
+
+		if (this.value) arr.push(this.value)
+		if (this.left) queue.push(this.left)
+		if (this.right) queue.push(this.right)
+		let nextNode = queue.shift()
+		if (nextNode) nextNode.breadthFirst(arr, queue)		
+	}
+
 }
 
 
