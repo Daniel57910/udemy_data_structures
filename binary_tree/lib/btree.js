@@ -33,11 +33,12 @@ class BinaryTree {
 	}
 
 	breadthFirst(arr, queue) {
-
-		if (this.value) arr.push(this.value)
+		arr.push(this.value)
 		if (this.left) queue.push(this.left)
 		if (this.right) queue.push(this.right)
+		/*last node currently on the stack popped off */
 		let nextNode = queue.shift()
+		/*if it's another binary tree instance invoke it and add its children to the queue */
 		if (nextNode) nextNode.breadthFirst(arr, queue)		
 	}
 
