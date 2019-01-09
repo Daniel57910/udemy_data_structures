@@ -121,8 +121,10 @@ describe(`breadth first search`, () => {
 		binaryTree.insert(6)
 		binaryTree.insert(12)
 		binaryTree.insert(3)
+		binaryTree.insert(7)
+		binaryTree.insert(11)
 		binaryTree.breadthFirst(dataArray, queue)
-		expect(dataArray).toEqual([10, 6, 12, 3])
+		expect(dataArray).toEqual([10, 6, 12, 3, 7, 11])
 	})
 })
 
