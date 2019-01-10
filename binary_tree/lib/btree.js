@@ -49,6 +49,31 @@ class BinaryTree {
 		}
 	}
 
+	getMinVal() {
+		let current = this
+		while(current) {
+			if (current.left) current = current.left
+			else return current.value
+		}
+	}
+	getMaxVal() {
+		let current = this
+		while (current) {
+			if (current.right) current = current.right
+			else return current.value
+		}
+	}
+
+	getMinRec() {
+		if (!this.left) return this.value
+		return this.left.getMinRec()
+	}
+
+	getMaxRec() {
+		if (!this.right) return this.value
+		return this.right.getMaxRec()
+	}
+
 }
 
 

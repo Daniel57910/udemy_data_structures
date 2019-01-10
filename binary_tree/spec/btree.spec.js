@@ -155,6 +155,22 @@ describe(`breadth first search`, () => {
 	})
 })
 
+describe(`Min And Max Value Retrieval`, () => {
+	beforeEach(() => {
+		binaryTree = new BinaryTree(10)
+	})
+	test(`finding the min val when there is only one value`, () => {
+		expect(binaryTree.getMinVal()).toEqual(10)
+	})
+	test(`more complex assertion of several values`, () => {
+		binaryTree.insert(7)
+		binaryTree.insert(4)
+		binaryTree.insert(1)
+		expect(binaryTree.getMinVal()).toEqual(1)
+		expect(binaryTree.getMinRec()).toEqual(1)
+	})
+})
+
 function addDataToTree(binaryTree, dataArray, n) {
 	for (let i = 0; i < n; i++) {
 		dataArray.push(Math.floor(Math.random() * n))
