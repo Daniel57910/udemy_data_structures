@@ -36,10 +36,17 @@ class BinaryTree {
 		arr.push(this.value)
 		if (this.left) queue.push(this.left)
 		if (this.right) queue.push(this.right)
-		/*last node currently on the stack popped off */
-		let nextNode = queue.shift()
-		/*if it's another binary tree instance invoke it and add its children to the queue */
-		if (nextNode) nextNode.breadthFirst(arr, queue)		
+		if (queue[0]) queue.shift().breadthFirst(arr, queue)
+	}
+
+	breadthFirstIterator(arr) {
+		let queue = [this]
+		while (queue.length > 0) {
+			let current = queue.shift()
+			arr.push(current.value)
+			if (current.left) queue.push(current.left)
+			if (current.right) queue.push(current.right)
+		}
 	}
 
 }

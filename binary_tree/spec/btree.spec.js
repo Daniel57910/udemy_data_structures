@@ -128,6 +128,19 @@ describe(`breadth first search`, () => {
 	})
 
 	test(`binary tree of uneven levels`, () => {
+		let binaryTree = new BinaryTree(10), dataArray = []
+		binaryTree.insert(8)
+		binaryTree.insert(9)
+		binaryTree.insert(6)
+		binaryTree.insert(7)
+		binaryTree.insert(5)
+		binaryTree.insert(12)
+		binaryTree.insert(19)
+		binaryTree.insert(23)
+		binaryTree.breadthFirst(dataArray, [])
+		expect(dataArray).toEqual([10, 8, 12, 6, 9, 19, 5, 7, 23])
+	})
+	test(`binary tree of uneven levels`, () => {
 		let binaryTree = new BinaryTree(10), dataArray = [], queue = []
 		binaryTree.insert(8)
 		binaryTree.insert(9)
@@ -137,7 +150,7 @@ describe(`breadth first search`, () => {
 		binaryTree.insert(12)
 		binaryTree.insert(19)
 		binaryTree.insert(23)
-		binaryTree.breadthFirst(dataArray, queue)
+		binaryTree.breadthFirstIterator(dataArray, queue)
 		expect(dataArray).toEqual([10, 8, 12, 6, 9, 19, 5, 7, 23])
 	})
 })
