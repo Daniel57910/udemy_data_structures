@@ -3,14 +3,19 @@ const HashMap = require(`../lib/hash`)
 describe(`Basic hash map implementation`, () => {
   beforeEach(() => {
     hashMap = new HashMap()
-  })
-  test(`instantiation of hash map object`, () => {
-    expect(hashMap.returnBucket()).toEqual([])
+    hashMap.createBucket()
   })
   test(`generate simple hash bucket array`, () => {
-    hashMap.createBucket()
     expect(hashMap.returnBucket().length).toEqual(26)
-    let bucket = hashMap.returnBucket()[Math.floor(Math.random() * 26)]
-    expect(bucket).toEqual([])
+    expect(hashMap.returnBucket()[Math.floor(Math.random() * 26)]).toEqual([])
   })
+  test(`identifying location of key value pair in hash map`, () => {
+    expect(hashMap.hashTheKey("ABCD")).toEqual(0)
+    expect(hashMap.hashTheKey("ZBACDEF")).toEqual(25)
+  })
+  test(`adding values to basic hash map`, () => {
+    hashMap.insert("Adder", "Into My Heart")
+    expect(hashMap.returnBucket()[0][0]).toEqual({Adder: "Into My Heart"})
+  })
+
 })
