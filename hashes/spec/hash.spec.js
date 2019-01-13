@@ -15,12 +15,11 @@ describe(`Basic hash map implementation`, () => {
   })
   test(`adding values to basic hash map`, () => {
     hashMap.insert("Adder", "Into My Heart")
-    expect(hashMap.returnBucket()[0][0]).toEqual({Adder: "Into My Heart"})
+    expect(hashMap.returnBucket()[0][hashMap.hashTheKey("Adder")]).toEqual({Adder: "Into My Heart"})
   })
   test(`hash map collissions`, () => {
     hashMap.insert("GRR", "GMT")
     hashMap.insert("GRR", "CLS")
     expect(hashMap.returnBucket()[hashMap.hashTheKey("GRR")]).toEqual([{GRR: "GMT"}, {GRR: "CLS"}])
   })
-
 })
