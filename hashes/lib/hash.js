@@ -1,6 +1,8 @@
 class HashMap {
   constructor() {
     this.bucket = []
+    this.power = 7
+    this.modulo = 23
   }
   returnBucket() {
     return this.bucket
@@ -21,7 +23,7 @@ class HashMap {
 
   find(key) {
     if (!this._exists(key)) return 'DOES NOT EXIST'
-    return this.bucket[this.hashTheKey(key)].find(c => c.key === key).value
+    return this.bucket[this.hashTheKey(key)].find(k => k.key === key).value
   }
 
   _exists(key) {
@@ -31,6 +33,15 @@ class HashMap {
   remove(key) {
     if (!this._exists(key)) return 'DOES NOT EXIST'
     this.bucket[this.hashTheKey(key)] = this.bucket[this.hashTheKey(key)].filter(k => k.key !== key)
+  }
+
+  generateComplexHash(key) {
+    let sum = 0, count = 1
+    for (let item of key) {
+      sum += (this.power * count) ** (item.charCodeAt(0) - 64)
+      count++
+    }
+    return sum % this.modulo
   }
 
 }
