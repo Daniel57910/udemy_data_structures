@@ -31,4 +31,9 @@ describe(`Basic hash map implementation`, () => {
     expect(hashMap.find("SALLY")).toEqual("LUKE")
     expect(hashMap.find('TIM')).toEqual('DOES NOT EXIST')
   })
+  test(`removing an element from the hash map`, () => {
+    hashMap.insert("ABCDEF", "123456")
+    hashMap.remove("ABCDEF")
+    expect(hashMap.find("ABCDEF")).toEqual("DOES NOT EXIST")
+  })
 })

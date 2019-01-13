@@ -20,8 +20,17 @@ class HashMap {
   }
 
   find(key) {
-    if (!this.bucket[this.hashTheKey(key)].length) return 'DOES NOT EXIST'
+    if (!this._exists(key)) return 'DOES NOT EXIST'
     return this.bucket[this.hashTheKey(key)].find(c => c.key === key).value
+  }
+
+  _exists(key) {
+    return this.bucket[this.hashTheKey(key)].length
+  }
+
+  remove(key) {
+    if (!this._exists(key)) return 'DOES NOT EXIST'
+    this.bucket[this.hashTheKey(key)] = this.bucket[this.hashTheKey(key)].filter(k => k.key !== key)
   }
 
 }
