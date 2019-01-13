@@ -11,6 +11,7 @@ class HashMap {
     }
   }
   hashTheKey(string) {
+    /*string returns ASCI val of character which is 65 > 0*/
     return (string.charCodeAt(0) - 65)
   }
   insert(key, value) {
