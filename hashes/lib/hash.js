@@ -2,8 +2,10 @@ class HashMap {
   constructor() {
     this.bucket = []
     this.power = 7
-    this.modulo = 23
+    this.modulo = 26
+    this.hashTheKey
   }
+
   returnBucket() {
     return this.bucket
   }
@@ -12,12 +14,13 @@ class HashMap {
       this.bucket[i] = []
     }
   }
-  hashTheKey(string) {
-    /*string returns ASCI val of character which is 65 > 0. to string used to avoid failure on non string insertions*/
-    return (string.toString().charCodeAt(0) - 65)
+
+  createHash(type = "simple") {
+    type === "simple" ? this.hashTheKey = this.simpleHash : this.hashTheKey = this.complexHash
   }
+
   insert(key, value) {
-    /*destructures string object to gain value to create dynamic key*/
+    /*inserts the k -> v pair in correct location in bucket array*/
     this.bucket[this.hashTheKey(key)].push({key: key, value: value})
   }
 
@@ -35,15 +38,25 @@ class HashMap {
     this.bucket[this.hashTheKey(key)] = this.bucket[this.hashTheKey(key)].filter(k => k.key !== key)
   }
 
-  generateComplexHash(key) {
-    let sum = 0, count = 1
-    for (let item of key) {
-      sum += (this.power * count) ** (item.charCodeAt(0) - 64)
+  simpleHash(string) {
+    return (string.toString().charCodeAt(0) - 65)
+  }
+
+  complexHash(string) {
+    let sum = 0, count = 0
+    for (let character in string) {
+      sum += (this.power * count) ** (string.charCodeAt(character) - 65)
       count++
     }
     return sum % this.modulo
   }
 
+
 }
+
+
+
+
+
 
 module.exports = HashMap

@@ -4,6 +4,7 @@ describe(`Basic hash map implementation`, () => {
   beforeEach(() => {
     hashMap = new HashMap()
     hashMap.createBucket()
+    hashMap.createHash()
   })
   test(`generate simple hash bucket array`, () => {
     expect(hashMap.returnBucket().length).toEqual(26)
@@ -36,11 +37,17 @@ describe(`Basic hash map implementation`, () => {
     hashMap.remove("ABCDEF")
     expect(hashMap.find("ABCDEF")).toEqual("DOES NOT EXIST")
   })
-  test(`creating an advanced hash function using prime numbers & modulo`, () => {
-    expect(hashMap.generateComplexHash("ABC")).toEqual(complex())
-  })
 }) 
 
-function complex() {
-  return ((7 ** 1) + (14 ** 2) + (21 ** 3)) % 23
-}
+describe(`More complex hashing implementation`, () => {
+  beforeEach(() => {
+    hashMap = new HashMap()
+    hashMap.createBucket()
+    hashMap.createHash("complex")
+  })
+  test(`creating an advanced hash function using prime numbers & modulo`, () => {
+    expect(hashMap.hashTheKey("A")).toEqual(1)
+    expect(hashMap.hashTheKey("Z")).toEqual(0)
+  })
+})
+
