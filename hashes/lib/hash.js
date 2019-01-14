@@ -16,7 +16,7 @@ class HashMap {
   }
 
   createHash(type = "simple") {
-    type === "simple" ? this.hashTheKey = this.simpleHash : this.hashTheKey = this.complexHash
+    type === "simple" ? this.hashTheKey = this._simpleHash : this.hashTheKey = this._complexHash
   }
 
   insert(key, value) {
@@ -38,11 +38,11 @@ class HashMap {
     this.bucket[this.hashTheKey(key)] = this.bucket[this.hashTheKey(key)].filter(k => k.key !== key)
   }
 
-  simpleHash(string) {
+  _simpleHash(string) {
     return (string.toString().charCodeAt(0) - 65)
   }
 
-  complexHash(string) {
+  _complexHash(string) {
     let sum = 0, count = 0
     for (let character in string) {
       sum += (this.power * count) ** (string.charCodeAt(character) - 65)

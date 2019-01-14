@@ -49,5 +49,40 @@ describe(`More complex hashing implementation`, () => {
     expect(hashMap.hashTheKey("A")).toEqual(1)
     expect(hashMap.hashTheKey("Z")).toEqual(0)
   })
+  test(`inserting basic entries into the complex hash table array`, () => {
+    hashMap.insert("A", "Z")
+    hashMap.insert("Z", "A")
+    expect(hashMap.returnBucket()[0][0]).toEqual({key: "Z", value: "A"})
+    expect(hashMap.returnBucket()[1][0]).toEqual({key: "A", value: "Z"})
+  })
+  test(`more complex insertion cases being bucketed in correct places`, () => {
+    hashMap.insert("GeorgeMartin", "Dance of Dragons")
+    hashMap.insert("JRRTolkein", "Hobbits")
+    hashMap.insert("Zoolander", "Abacus")
+    expect(hashMap.returnBucket()[complexHash("GeorgeMartin")][0]).toEqual({key: "GeorgeMartin", value: "Dance of Dragons"})
+  })
+  test(`searching for entries`, () => {
+    hashMap.insert("GeorgeMartin", "Dance of Dragons")
+    hashMap.insert("JRRTolkein", "Hobbits")
+    hashMap.insert("Zoolander", "Abacus")
+    expect(hashMap.find("Zoolander")).toEqual("Abacus")
+    expect(hashMap.find("IUDQB")).toEqual("DOES NOT EXIST")
+  })
+  test(`removing entries`, () => {
+    hashMap.insert("Dance", "12345")
+    hashMap.insert("DANIEL", "F")
+    hashMap.insert("ABD231", "9999")
+    hashMap.remove("Dance")
+    expect(hashMap.find("Dance")).toEqual("DOES NOT EXIST")
+  })
 })
 
+
+function complexHash(string) {
+  let sum = 0, count = 0, modulo = 26, power = 7
+  for (let character in string) {
+    sum += (power * count) ** (string.charCodeAt(character) - 65)
+    count++
+  }
+  return sum % modulo
+}
