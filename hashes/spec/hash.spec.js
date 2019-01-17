@@ -77,6 +77,18 @@ describe(`More complex hashing implementation`, () => {
   })
 })
 
+describe(`Getting all the data from the function`, () =>{
+  beforeEach(() => {
+    hashMap = new HashMap()
+    hashMap.createBucket()
+    hashMap.createHash()
+  })
+  test(`retrieve all when one item added`, () => {
+    hashMap.insert("ABCDEF", "123456")
+    expect(hashMap.retrieveAll()).toEqual([{key: "ABCDEF", value: "123456"}])
+  })
+})
+
 
 function complexHash(string) {
   let sum = 0, count = 0, modulo = 26, power = 7

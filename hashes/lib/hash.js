@@ -1,4 +1,5 @@
 class HashMap {
+
   constructor() {
     this.bucket = []
     this.power = 7
@@ -16,7 +17,8 @@ class HashMap {
   }
 
   createHash(type = "simple") {
-    type === "simple" ? this.hashTheKey = this._simpleHash : this.hashTheKey = this._complexHash
+    type === "simple" ? 
+    this.hashTheKey = this._simpleHash : this.hashTheKey = this._complexHash
   }
 
   insert(key, value) {
@@ -51,12 +53,12 @@ class HashMap {
     return sum % this.modulo
   }
 
+  retrieveAll() {
+    return this.bucket.reduce((indices, elements) => indices.concat(elements), [])
+  }
+
 
 }
-
-
-
-
 
 
 module.exports = HashMap
