@@ -87,6 +87,17 @@ describe(`Getting all the data from the function`, () =>{
     hashMap.insert("ABCDEF", "123456")
     expect(hashMap.retrieveAll()).toEqual([{key: "ABCDEF", value: "123456"}])
   })
+  test(`returns array when collission occurs`, () => {
+	  hashMap.insert("ABCDEF", "123456")
+	  hashMap.insert("ABCDEF", "99999")
+	  expect(hashMap.retrieveAll()).toEqual([{key: "ABCDEF", value: "123456"}, {key: "ABCDEF", value: "99999"}])
+  })
+  test('returning an array of multiple values', () => {
+	  hashMap.insert("A", "26")
+	  hashMap.insert("Z", "18")
+	  hashMap.insert("C", "9")
+	  expect(hashMap.retrieveAll()).toEqual([{key: 'A', value: '26'}, {key: 'C', value: '9'}, {key: 'Z', value: '18'}])
+  })
 })
 
 
